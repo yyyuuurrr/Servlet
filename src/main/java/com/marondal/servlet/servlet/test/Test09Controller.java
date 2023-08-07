@@ -10,26 +10,27 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/servlet/test09")
 public class Test09Controller extends HttpServlet {
-	
-	@Override
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+	@Override 
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		
 		response.setContentType("text/html");
-
+		response.setCharacterEncoding("utf-8");
+		
 		PrintWriter out = response.getWriter();
 		
-		// 이름과 자기소개를 전달 받고. 정리된 내용을 html로 response에 담는다.
 		String name = request.getParameter("name");
-		String introduce = request.getParameter("introduce");
+		String selfIntroduction = request.getParameter("selfIntroduction");
 		
-		out.println("<html><head><title>자기소개</title></head><body>");
+		out.print("<html><head><title></title></head><body>");
 		
-		out.println("<h2>" + name + "님의 지원이 완료되었습니다. <h2>");
-		out.println("<hr><div>지원내용</div> <div>" + introduce + "</div>");
+		out.print("<h1>" + name + "님 지원이 완료 되었습니다.</h1>");
 		
-		out.println("</body></html>");
+		out.print("<hr> 지원 내용 <br>");
 		
+		out.print(selfIntroduction);
+		
+		out.print("</body></html>");
 		
 	}
-	
 }
