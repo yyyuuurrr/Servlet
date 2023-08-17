@@ -6,7 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class MysqlService {
+import javax.servlet.http.HttpServlet;
+
+public class MysqlService extends HttpServlet{
 
 	private static MysqlService mysqlService = null; 
 	

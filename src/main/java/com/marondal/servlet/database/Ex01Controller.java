@@ -1,20 +1,26 @@
-package com.marondal.servlet.common.database;
+package com.marondal.servlet.database;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.marondal.servlet.common.MysqlService;
 
 @WebServlet("/db/ex01")
-public class Ex01Controller {
+public class Ex01Controller extends HttpServlet {
 
+	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
 		response.setContentType("text/html");
 		
 		PrintWriter out = response.getWriter();
@@ -63,39 +69,42 @@ public class Ex01Controller {
 		
 		
 		
-//		try {
-//			// 데이터베이스 접속
-//			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-//			// 서버주소, 아이디, 비밀번호
-//			String url = "jdbc:mysql://localhost:3306/yuuur_schema";
-//			String userId = "root";
-//			String password = "root";
-//			
-//			Connection connection =  DriverManager.getConnection(url, userId, password);
-//			Statement statement = connection.createStatement();
-//			
-//			String selectQuery = "SELECT* FROM `used_goods`;";
-//			ResultSet resultSet = statement.executeQuery(selectQuery);
-//			
-//			out.println("<html><head><title>중고물품</title></head><body>");
-//			
-//			while(resultSet.next()) {
-//				String title = resultSet.getString("title");
-//				int price = resultSet.getInt("price");
-//				
-//				//제목 "플스 팝니다. 가격 : 30000원
-//				out.println("<div>제목 : " + title + "가격 : " + price + "</div>");
-//				
-//			}
-//			
-//			out.println("</body></html>");
-//			
-//			
-//			
-//		} catch (SQLException e) {
-//			
-//			e.printStackTrace();
-//		}
+		try {
+			// 데이터베이스 접속
+			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+			// 서버주소, 아이디, 비밀번호
+			String url = "jdbc:mysql://localhost:3306/yuuur_schema";
+			String userId = "root";
+			String password = "root";
+			
+			Connection connection =  DriverManager.getConnection(url, userId, password);
+			Statement statement = connection.createStatement();
+			
+			String selectQuery1 = "SELECT* FROM `used_goods`;";
+			ResultSet resultSet1 = statement.executeQuery(selectQuery1);
+			
+			out.println("<html><head><title>중고물품</title></head><body>");
+			
+			while(resultSet1.next()) {
+				String title = resultSet1.getString("title");
+				int price = resultSet1.getInt("price");
+				
+				//제목 "플스 팝니다. 가격 : 30000원
+				out.println("<div>제목 : " + title + " 가격 : " + price + "</div>");
+				
+			}
+			
+			out.println("</body></html>");
+			
+			
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
 		
-	
+		
+		
+	}
+		
 }

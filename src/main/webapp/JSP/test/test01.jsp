@@ -37,16 +37,8 @@
 	<h3>채점결과는 <%= count %>입니다.</h3>
 	
 	<!-- 3번 -->
-	<% 
-		public int sum2(int number){
-			int sum1 = 0;
-			for(int i = 1; i <= 50; i++){
-				sum += i;
-			}
-			return sum;		
-		}
-	
-	%>
+
+
 	<h3>1에서 50까지의 합은 <%= sum %>입니다.</h3>
 	
 	<!-- 4번 -->
@@ -59,8 +51,7 @@
 		
 		int age = 2023 - year + 1;
 	%>
-	
-	<h2>20010820의 나이는 <%= age %>살 입니다.</h2>
+
 	
 	
 </body>
