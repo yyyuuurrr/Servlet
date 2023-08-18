@@ -11,7 +11,7 @@
 
 	<h3>즐겨찾기 추가</h3>
 	<br>
-	<form method="get" action="/db/test02">
+	<form method="post" action="/db/test02">
 		<label>사이트명 : </label> <input type="text" name="name"> <br>
 		<label>사이트 주소 :</label> <input type="text" name="url"><br>
 		<div class="pt-3">

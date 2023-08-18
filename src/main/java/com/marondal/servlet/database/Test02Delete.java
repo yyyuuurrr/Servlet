@@ -10,12 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.marondal.servlet.common.MysqlService;
 
-@WebServlet("/db/test02")
-public class Test02Controller extends HttpServlet {
+@WebServlet("/db/test02/delete")
+public class Test02Delete extends HttpServlet {
 	
 	@Override 
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	
 		response.setContentType("text/plain");		
 		PrintWriter out = response.getWriter();
 		
@@ -23,27 +23,21 @@ public class Test02Controller extends HttpServlet {
 		
 		mysqlService.connect();
 		
-		String name = request.getParameter("name");
-		String url = request.getParameter("url");
+		int id = Integer.parseInt(request.getParameter("id"));
+
 		
+		String query = "DELETE FROM `url_list` WHERE `id` = " + id  + ";";
 		
-		String query = "INSERT INTO `url_list`\r\n"
-				+ "(`name`, `url`)\r\n"
-				+ "VALUE\r\n"
-				+ "('" + name + "', '" + url + "');";
+		int count = mysqlService.update(query);
 		
-		int count = mysqlService.update(query);		
-		
-		//out.println("실행결과 : " + count);		
-		
-		mysqlService.disconnect();
+		out.println("실행결과 : " + count);
 		
 		
 		// 페이지 이동 redirect
 		response.sendRedirect("/database/test02-list.jsp");
 		
-	
+		
 		
 	}
-
+	
 }
